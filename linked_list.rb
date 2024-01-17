@@ -26,7 +26,7 @@ class LinkedList
     @tail = node
     @length += 1
 
-    self
+    draw
   end
 
   def draw
@@ -42,6 +42,19 @@ class LinkedList
     "#{linked_list.join(arrow)}#{arrow}nil"
   end
 
+  def insert(index, value)
+    return prepend(value) if index.zero?
+    return append(value) if index + 1 == length
+
+    node = Node.new(value)
+    current = head
+
+    current = traversal(current, index - 1)
+    swatch(current, node)
+
+    draw
+  end
+
   def prepend(data)
     node = Node.new(data)
     current = node
@@ -49,6 +62,22 @@ class LinkedList
     @head = current
     @length += 1
 
-    self
+    draw
+  end
+
+  private
+
+  def traversal(current_node, count)
+    count.times do
+      current_node = current_node.next
+    end
+
+    current_node
+  end
+
+  def swatch(current, node)
+    temp = current.next
+    current.next = node
+    node.next = temp
   end
 end
