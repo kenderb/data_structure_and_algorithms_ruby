@@ -44,13 +44,27 @@ class LinkedList
 
   def insert(index, value)
     return prepend(value) if index.zero?
-    return append(value) if index + 1 == length
+    return append(value) if index + 1 == length || index + 1 >= length
 
     node = Node.new(value)
     current = head
 
     current = traversal(current, index - 1)
     swatch(current, node)
+    @length += 1
+
+    draw
+  end
+
+  def delete(index)
+    return draw if @length == 1
+
+    index = length - 1 if index > length
+    current = head
+
+    current = traversal(current, index - 1)
+    current.next = current.next.next if current.next
+    @length -= 1
 
     draw
   end
@@ -68,6 +82,8 @@ class LinkedList
   private
 
   def traversal(current_node, count)
+    return current_node if current_node.next.nil?
+
     count.times do
       current_node = current_node.next
     end
