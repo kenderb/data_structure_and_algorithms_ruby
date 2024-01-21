@@ -45,58 +45,13 @@ class DoublyLinkedList
     "#{linked_list.join(arrow)}-->nil"
   end
 
-  # def insert(index, value)
-  #   return prepend(value) if index.zero?
-  #   return append(value) if index + 1 == length || index + 1 >= length
+  def prepend(data)
+    node = Node.new(data)
+    current = node
+    current.next = @head
+    @head = current
+    @length += 1
 
-  #   node = Node.new(value)
-  #   current = head
-
-  #   current = traversal(current, index - 1)
-  #   swatch(current, node)
-  #   @length += 1
-
-  #   draw
-  # end
-
-  # def delete(index)
-  #   return draw if @length == 1
-
-  #   index = length - 1 if index > length
-  #   current = head
-
-  #   current = traversal(current, index - 1)
-  #   current.next = current.next.next if current.next
-  #   @length -= 1
-
-  #   draw
-  # end
-
-  # def prepend(data)
-  #   node = Node.new(data)
-  #   current = node
-  #   current.next = @head
-  #   @head = current
-  #   @length += 1
-
-  #   draw
-  # end
-
-  # private
-
-  # def traversal(current_node, count)
-  #   return current_node if current_node.next.nil?
-
-  #   count.times do
-  #     current_node = current_node.next
-  #   end
-
-  #   current_node
-  # end
-
-  # def swatch(current, node)
-  #   temp = current.next
-  #   current.next = node
-  #   node.next = temp
-  # end
+    draw
+  end
 end

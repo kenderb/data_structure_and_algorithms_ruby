@@ -79,6 +79,21 @@ class LinkedList
     draw
   end
 
+  def reverse
+    prev = nil
+    current = @head
+
+    while current
+      temp = current.next
+      current.next = prev
+      prev = current
+      current = temp
+    end
+    @head = prev
+
+    draw
+  end
+
   private
 
   def traversal(current_node, count)
