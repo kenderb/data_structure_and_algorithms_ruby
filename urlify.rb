@@ -6,7 +6,6 @@
 # (please use a character array so that you can perform this operation in place.)
 # EXAMPLE
 # Input: "Mr John Smith ", 13 Output: "Mr%20John%20Smith" Hints: #53, #118
-
 def urlify(string, size)
   string = string.strip
   i = 0
