@@ -18,9 +18,25 @@ class BinarySearchTree
     assign_to_leaf(@root, new_node)
   end
 
-  # TODO: implement this method on your own
-  def lookup(value)
-    value
+  def find(value)
+    return unless root
+
+    current_node = @root
+
+    loop do
+      return current_node if current_node.value == value
+
+      if value > current_node.value
+        return if current_node.right.nil?
+
+        current_node = current_node.right
+
+      elsif value < current_node.value
+        return if current_node.left.nil?
+
+        current_node = current_node.left
+      end
+    end
   end
 
   private
@@ -28,12 +44,18 @@ class BinarySearchTree
   def assign_to_leaf(temp_root, new_node)
     value = new_node.value
 
+    node_traversal_for_assignment(temp_root, new_node, value)
+  end
+
+  def node_traversal_for_assignment(temp_root, new_node, value)
     loop do
+      return temp_root.frequency += 1 if value == temp_root.value
+
       if value > temp_root.value
         return assign_node_to_right(temp_root, new_node) if temp_root.right.nil?
 
         temp_root = temp_root.right
-      else
+      elsif value < temp_root.value
         return assign_node_to_left(temp_root, new_node) if temp_root.left.nil?
 
         temp_root = temp_root.left
