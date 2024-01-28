@@ -4,7 +4,7 @@ require './binary_node'
 
 # Represents a BinarySearchTree
 class BinarySearchTree
-  attr_accessor :root
+  attr_accessor :root, :visited_dfs_nodes
 
   def initialize(root = nil)
     @root = root
@@ -48,6 +48,21 @@ class BinarySearchTree
       visited_nodes << current_visited.value
       queue.push(current_visited.left, current_visited.right).compact!
     end
+
+    visited_nodes
+  end
+
+  def dfs
+    current_node = @root
+    visited_nodes = []
+    traversal_dfs = lambda do |node|
+      visited_nodes << node.value
+
+      traversal_dfs.call(node.left) if node.left
+      traversal_dfs.call(node.right) if node.right
+    end
+
+    traversal_dfs.call(current_node)
 
     visited_nodes
   end
