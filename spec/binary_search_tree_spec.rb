@@ -109,4 +109,27 @@ describe BinarySearchTree, type: :class do
       end
     end
   end
+
+  describe '#bfs method for Breadth First Search' do
+    context 'when there are nodes in the Tree' do
+      before do
+        subject.insert(45)
+        subject.insert(33)
+        subject.insert(85)
+        subject.insert(100)
+        subject.insert(2)
+        subject.insert(10)
+      end
+      #           45
+      #      33     85
+      #  2               100
+      #     10
+
+      it 'returns the visited nodes values' do
+        expect(subject.bfs).to_not be_nil
+        expect(subject.bfs.length).to eq 6
+        expect(subject.bfs).to eq [45, 33, 85, 2, 100, 10]
+      end
+    end
+  end
 end

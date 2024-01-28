@@ -39,6 +39,19 @@ class BinarySearchTree
     end
   end
 
+  def bfs
+    queue = [@root]
+    visited_nodes = []
+
+    until queue.empty?
+      current_visited = queue.shift
+      visited_nodes << current_visited.value
+      queue.push(current_visited.left, current_visited.right).compact!
+    end
+
+    visited_nodes
+  end
+
   private
 
   def assign_to_leaf(temp_root, new_node)
