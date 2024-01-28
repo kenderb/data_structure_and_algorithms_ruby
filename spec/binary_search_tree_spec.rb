@@ -133,7 +133,7 @@ describe BinarySearchTree, type: :class do
     end
   end
 
-  describe '#dfs method for Depth First Search Pre-ordered' do
+  describe '#dfs_pre_order method for Depth First Search Pre-ordered' do
     context 'when there are nodes in the Tree' do
       before do
         subject.insert(45)
@@ -149,9 +149,55 @@ describe BinarySearchTree, type: :class do
       #     10
 
       it 'returns the visited nodes values' do
-        expect(subject.dfs).to_not be_nil
-        expect(subject.dfs.length).to eq 6
-        expect(subject.dfs).to eq [45, 33, 2, 10, 85, 100]
+        expect(subject.dfs_pre_order).to_not be_nil
+        expect(subject.dfs_pre_order.length).to eq 6
+        expect(subject.dfs_pre_order).to eq [45, 33, 2, 10, 85, 100]
+      end
+    end
+  end
+
+  describe '#dfs_post_order method for Depth First Search Pre-ordered' do
+    context 'when there are nodes in the Tree' do
+      before do
+        subject.insert(45)
+        subject.insert(33)
+        subject.insert(85)
+        subject.insert(100)
+        subject.insert(2)
+        subject.insert(10)
+      end
+      #           45
+      #      33     85
+      #  2               100
+      #     10
+
+      it 'returns the visited nodes values' do
+        expect(subject.dfs_post_order).to_not be_nil
+        expect(subject.dfs_post_order.length).to eq 6
+        expect(subject.dfs_post_order).to eq [10, 2, 33, 100, 85, 45]
+      end
+    end
+  end
+
+  describe '#dfs_in_order method for Depth First Search Pre-ordered' do
+    context 'when there are nodes in the Tree' do
+      before do
+        subject.insert(45)
+        subject.insert(33)
+        subject.insert(85)
+        subject.insert(100)
+        subject.insert(2)
+        subject.insert(10)
+      end
+      #           45
+      #      33     85
+      #  2               100
+      #     10
+
+      it 'returns the visited nodes values' do
+        expect(subject.dfs_in_order).to_not be_nil
+        expect(subject.dfs_in_order.length).to eq 6
+        expect(subject.dfs_in_order).to eq [2, 10, 33, 45, 85, 100]
       end
     end
   end

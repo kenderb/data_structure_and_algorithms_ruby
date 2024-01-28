@@ -52,8 +52,7 @@ class BinarySearchTree
     visited_nodes
   end
 
-  def dfs
-    current_node = @root
+  def dfs_pre_order
     visited_nodes = []
     traversal_dfs = lambda do |node|
       visited_nodes << node.value
@@ -62,7 +61,34 @@ class BinarySearchTree
       traversal_dfs.call(node.right) if node.right
     end
 
-    traversal_dfs.call(current_node)
+    traversal_dfs.call(@root)
+
+    visited_nodes
+  end
+
+  def dfs_post_order
+    visited_nodes = []
+    traversal_dfs = lambda do |node|
+      traversal_dfs.call(node.left) if node.left
+      traversal_dfs.call(node.right) if node.right
+
+      visited_nodes << node.value
+    end
+
+    traversal_dfs.call(@root)
+
+    visited_nodes
+  end
+
+  def dfs_in_order
+    visited_nodes = []
+    traversal_dfs = lambda do |node|
+      traversal_dfs.call(node.left) if node.left
+      visited_nodes << node.value
+      traversal_dfs.call(node.right) if node.right
+    end
+
+    traversal_dfs.call(@root)
 
     visited_nodes
   end
