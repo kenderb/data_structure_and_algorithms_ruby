@@ -32,9 +32,19 @@ describe BinarySearch, type: :class do
 
     context 'when we call it with a value that is not in the array' do
       let(:find_value) { 0 }
+      let(:second_find_value) { 700 }
+      let(:third_find_value) { -1 }
 
       it 'returns nil' do
         expect(subject.search(find_value)).to be_falsey
+      end
+
+      it 'returns nil' do
+        expect(subject.search(second_find_value)).to be_falsey
+      end
+
+      it 'returns nil' do
+        expect(subject.search(third_find_value)).to be_falsey
       end
     end
   end

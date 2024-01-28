@@ -14,13 +14,12 @@ class BinarySearch
 
     while left < right
       mid = ((left + right) / 2).ceil
+
       return mid if arr[mid] == value
+      return false if mid == arr.size - 1
 
       left = mid if value > arr[mid]
-
       right = mid if value < arr[mid]
     end
-
-    false
   end
 end
